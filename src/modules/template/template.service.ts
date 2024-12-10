@@ -1,26 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTemplateDto } from './dto/create-template.dto';
-import { UpdateTemplateDto } from './dto/update-template.dto';
+import { CreateTemplateRequestDto } from './dto/create-template.dto';
 
 @Injectable()
 export class TemplateService {
-  create(createTemplateDto: CreateTemplateDto) {
+  async create(body: CreateTemplateRequestDto) {
+    const createdDataId = 1;
+    const data = {
+      id: createdDataId,
+      ...body,
+    };
     return 'This action adds a new template';
   }
 
-  findAll() {
-    return `This action returns all template`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} template`;
-  }
-
-  update(id: number, updateTemplateDto: UpdateTemplateDto) {
-    return `This action updates a #${id} template`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} template`;
+  async findAll() {
+    const data = [];
+    return data;
   }
 }

@@ -3,47 +3,50 @@ import {
   Get,
   Post,
   Body,
-  Patch,
-  Param,
-  Delete,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { TemplateService } from './template.service';
-import { CreateTemplateDto } from './dto/create-template.dto';
-import { UpdateTemplateDto } from './dto/update-template.dto';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
+import { SkipAuth } from 'src/common/decorators';
+
+import { TemplateService } from './template.service';
+
+import { CreateTemplateRequestDto } from './dto';
+@SkipAuth()
 @Controller('template')
 export class TemplateController {
   constructor(private readonly templateService: TemplateService) {}
 
   @Post()
   @UsePipes(new ValidationPipe())
-  create(@Body() createTemplateDto: CreateTemplateDto) {
-    return this.templateService.create(createTemplateDto);
+  @ApiOperation({
+    summary: '예시 POST API',
+    description: '예시 POST API입니다. 설명을 작성해주세요',
+  })
+  @ApiResponse({
+    status: 201,
+    description: '자원 생성 성공.',
+    type: null,
+  })
+  async create(@Body() body: CreateTemplateRequestDto) {
+    const data = this.templateService.create(body);
+    return data;
   }
 
   @Get()
-  findAll() {
-    return this.templateService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.templateService.findOne(+id);
-  }
-
-  @Patch(':id')
   @UsePipes(new ValidationPipe())
-  update(
-    @Param('id') id: string,
-    @Body() updateTemplateDto: UpdateTemplateDto,
-  ) {
-    return this.templateService.update(+id, updateTemplateDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.templateService.remove(+id);
+  @ApiOperation({
+    summary: '예시 GET API',
+    description: '예시 GET API입니다. 설명을 작성해주세요',
+  })
+  @ApiResponse({
+    status: 201,
+    description: '자원 반환 성공.',
+    type: null,
+  })
+  async findAll() {
+    const data = this.templateService.findAll();
+    return data;
   }
 }
