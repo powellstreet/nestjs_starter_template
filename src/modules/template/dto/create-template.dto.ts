@@ -1,1 +1,1 @@
-export class CreateTemplateDto {}
+export class CreateTemplateRequestDto {}
