@@ -18,14 +18,14 @@ async function bootstrap() {
   // Filters
   app.useGlobalFilters(new HttpExceptionFilter());
 
-    // Pipes
-    app.useGlobalPipes(
-      new ValidationPipe({
-        whitelist: true, // DTO에 정의되지 않은 속성은 제거
-        forbidNonWhitelisted: true, // DTO에 정의되지 않은 속성이 있으면 에러 발생
-        transform: true, // DTO 변환 (string -> number 등)
-      }),
-    );
+  // Pipes
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true, // DTO에 정의되지 않은 속성은 제거
+      forbidNonWhitelisted: true, // DTO에 정의되지 않은 속성이 있으면 에러 발생
+      transform: true, // DTO 변환 (string -> number 등)
+    }),
+  );
 
   // Enable CORS
   app.enableCors();
