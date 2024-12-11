@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 import { SkipAuth } from 'src/common/decorators';
@@ -19,7 +12,6 @@ export class TemplateController {
   constructor(private readonly templateService: TemplateService) {}
 
   @Post()
-  @UsePipes(new ValidationPipe())
   @ApiOperation({
     summary: '예시 POST API',
     description: '예시 POST API입니다. 설명을 작성해주세요',
@@ -35,7 +27,6 @@ export class TemplateController {
   }
 
   @Get()
-  @UsePipes(new ValidationPipe())
   @ApiOperation({
     summary: '예시 GET API',
     description: '예시 GET API입니다. 설명을 작성해주세요',
