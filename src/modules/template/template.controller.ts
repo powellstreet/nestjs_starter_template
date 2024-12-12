@@ -5,7 +5,7 @@ import { SkipAuth } from 'src/common/decorators';
 
 import { TemplateService } from './template.service';
 
-import { CreateTemplateRequestDto } from './dto';
+import { CreateTemplateRequestDto, CreateTemplateResponseDto } from './dto';
 @SkipAuth()
 @Controller('template')
 export class TemplateController {
@@ -19,9 +19,11 @@ export class TemplateController {
   @ApiResponse({
     status: 201,
     description: '자원 생성 성공.',
-    type: null,
+    type: CreateTemplateResponseDto,
   })
-  async create(@Body() body: CreateTemplateRequestDto) {
+  async create(
+    @Body() body: CreateTemplateRequestDto,
+  ): Promise<CreateTemplateResponseDto> {
     const data = this.templateService.create(body);
     return data;
   }

@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTemplateRequestDto } from './dto/create-template.dto';
+import { CreateTemplateRequestDto, CreateTemplateResponseDto } from './dto';
 
 @Injectable()
 export class TemplateService {
-  async create(body: CreateTemplateRequestDto) {
+  async create(
+    body: CreateTemplateRequestDto,
+  ): Promise<CreateTemplateResponseDto> {
     const createdDataId = 1;
     const data = {
       id: createdDataId,
-      ...body,
     };
-    return 'This action adds a new template';
+    return data;
   }
 
   async findAll() {
